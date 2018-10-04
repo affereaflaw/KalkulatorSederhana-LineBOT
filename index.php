@@ -15,7 +15,7 @@ $configs =  [
 $app = new Slim\App($configs);
 
 $app->get('/', function ($request, $response) {
-	return "LINE bot SDK - blog.ashura.id";
+	return "BELAJAR BUAT LINE BOT";
 });
 
 $app->post('/', function ($request, $response)
@@ -43,15 +43,26 @@ $app->post('/', function ($request, $response)
 			if($event['message']['type'] == 'text')
 			{
 				
-				// --------------------------------------------------------------- NOTICE ME...
+				// --------------------------------------------------------------- MULAI KODE
 				
 				$inputMessage = $event['message']['text'];
-				$outputMessage = new TextMessageBuilder($inputMessage);
 				
-				$result = $bot->replyMessage($event['replyToken'], $outputMessage);
+				if ($inputMessage[0] == '/'){
+					$inputMessage = ltrim($inputMessage, '/');
+					$inputSplit = explode(' ', $inputMessage, 2);
+					
+					if(function_exists($inputSplit[0])){
+						$outputMessage = $inputSplit[0]($inputSplit[1]);
+					} else {
+						$outputMessage = new TextMessageBuilder('Perintah salah');
+					}
+
+					$result = $bot->replyMessage($event['replyToken'], $outputMessage);
 				return $result->getHTTPStatus() . ' ' . $result->getRawBody();
 				
-				// --------------------------------------------------------------- ...SENPAI!
+				}
+				
+				// --------------------------------------------------------------- AKHIR KODE
 				
 			}
 		}
