@@ -54,7 +54,7 @@ $app->post('/', function ($request, $response)
 					if(function_exists($inputSplit[0])){
 						$outputMessage = $inputSplit[0]($inputSplit[1]);
 					} else {
-						$outputMessage = new TextMessageBuilder('Perintah salah');
+						$outputMessage = new TextMessageBuilder('Maaf, pastikan Anda mengetikkan /hitung (perhitungan) ');
 					}
 
 					$result = $bot->replyMessage($event['replyToken'], $outputMessage);
