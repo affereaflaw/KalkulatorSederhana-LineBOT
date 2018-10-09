@@ -54,7 +54,7 @@ $app->post('/', function ($request, $response)
 					if(function_exists($inputSplit[0])){
 						$outputMessage = $inputSplit[0]($inputSplit[1]);
 					} else {
-						$outputMessage = new TextMessageBuilder('Maaf, pastikan Anda mengetikkan /hitung (perhitungan) ');
+						$outputMessage = new TextMessageBuilder('Maaf, pastikan Anda mengetikkan /hitung (perhitungan)');
 					}
 
 					$result = $bot->replyMessage($event['replyToken'], $outputMessage);
@@ -63,7 +63,12 @@ $app->post('/', function ($request, $response)
 				}
 				
 				// --------------------------------------------------------------- AKHIR KODE
-				
+				/* $ git init
+				$ heroku git:remote -a namaproject
+
+				$ git add .
+				$ git commit -am "first commit"
+				$ git push heroku master*/
 			}
 		}
 	}
